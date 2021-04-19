@@ -25,6 +25,26 @@ import React, {
   const NEXT = 'next'
   const PREVIOUS = 'previous'
   
+  
+  
+  function getScrollbarSize(){
+
+  const doc = document;
+  const scrollDiv = doc.createElement('div');
+  scrollDiv.style.width = '99px';
+  scrollDiv.style.height = '99px';
+  scrollDiv.style.position = 'absolute';
+  scrollDiv.style.top = '-9999px';
+  scrollDiv.style.overflow = 'scroll';
+
+  doc.body.appendChild(scrollDiv);
+  const scrollbarSize = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+  doc.body.removeChild(scrollDiv);
+
+  return scrollbarSize;
+}
+
+  
   const SRLLightboxGallery = ({
     options,
     callbacks,
@@ -417,11 +437,19 @@ import React, {
 
       const openedFromModal = document.body.style && document.body.style.overflow === 'hidden' ? true : false
 
+      
+
+      
       if (typeof window !== 'undefined') {
         document.body.classList.add('SRLOpened')
 
-        if(!openedFromModal)
-            document.body.style.paddingRight = compensateForScrollbar + 'px'
+      if(!openedFromModal) // if a modal already opened, dont need to set 
+      {
+        const scrollbarSize = getScrollbarSize()
+        if(scrollbarSize && scrollbarSize > 0)
+          document.body.style.paddingRight = scrollbarSize+'px'
+        document.body.style.overflow = 'hidden'
+      }
         disableBodyScroll(document.getElementsByClassName('.SRLOpened'), {
           allowTouchMove: (el) =>
             el.className.includes('SRLThumbnailsContainer') ||
@@ -432,8 +460,11 @@ import React, {
       // Cleanup function
       return () => {
         document.body.classList.remove('SRLOpened')
-        if(!openedFromModal)
-            document.body.style.paddingRight = '0'
+        if(!openedFromModal) // prevent to remove body styles when SRL opened from a modal 
+        {
+          document.body.style.paddingRight = ''
+          document.body.style.overflow = ''
+        }
         clearAllBodyScrollLocks()
       }
     }, [])
