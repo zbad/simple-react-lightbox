@@ -8,7 +8,7 @@ import { useLightbox } from './SRL/SRLHooks'
 const SimpleReactLightbox = ({ children }) => {
   return (
     <SRLContextComponent>
-      {children}
+     TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT {children}
       <SRLLightbox />
     </SRLContextComponent>
   )
