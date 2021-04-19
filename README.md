@@ -1,4 +1,4 @@
-# Simple React Lightbox (SRL)
+# Simple React Lightbox (SRL) zbad
 
 ![Simple React Lightbox - Logo](https://simple-react-lightbox.dev/docs/SRL_Logo_Git.jpeg)
 
