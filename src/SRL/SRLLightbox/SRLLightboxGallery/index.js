@@ -450,11 +450,14 @@ import React, {
           document.body.style.paddingRight = scrollbarSize+'px'
         document.body.style.overflow = 'hidden'
       }
+        
+        /*
         disableBodyScroll(document.getElementsByClassName('.SRLOpened'), {
           allowTouchMove: (el) =>
             el.className.includes('SRLThumbnailsContainer') ||
             el.className.includes('SRLThumb')
         })
+        */
       }
   
       // Cleanup function
@@ -465,7 +468,7 @@ import React, {
           document.body.style.paddingRight = ''
           document.body.style.overflow = ''
         }
-        clearAllBodyScrollLocks()
+        //clearAllBodyScrollLocks()
       }
     }, [])
   
