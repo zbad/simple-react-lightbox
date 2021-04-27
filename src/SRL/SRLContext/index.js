@@ -33,7 +33,7 @@ const initialState = {
       disableWheelControls: false,
       downloadedFileName: 'SRL-image',
       hideControlsAfter: false,
-      lightboxTransitionSpeed: 0.3,
+      lightboxTransitionSpeed: 0.1,
       lightboxTransitionTimingFunction: 'linear',
       overlayColor: 'rgba(30, 30, 30, 0.9)',
       slideAnimationType: 'fade',
